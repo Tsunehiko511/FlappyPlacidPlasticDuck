@@ -6,6 +6,7 @@ public class Duck : MonoBehaviour
 {
     [SerializeField] Score score;
     [SerializeField] float upSpeed;
+    [SerializeField] GameManager gameManager;
     // Spaceキーを押したら上に上昇する
     // ・RigidBody2Dを取得して上方向の速度を設定してあげる
 
@@ -37,12 +38,17 @@ public class Duck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("ぶつかったよー");
         // ゲームオーバーの処理を書いていく
+        // UIを表示したい
+        gameManager.GameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         score.AddScore(1);
     }
+
+    // ゲームオーバーの実装
+    // ・どのタイミングに、何をするのか？
+    // ・土管にぶつかったタイミングに、UIを表示する
 }
