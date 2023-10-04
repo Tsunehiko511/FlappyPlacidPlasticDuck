@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Duck : MonoBehaviour
 {
+    [SerializeField] Score score;
     [SerializeField] float upSpeed;
     // Spaceキーを押したら上に上昇する
     // ・RigidBody2Dを取得して上方向の速度を設定してあげる
@@ -38,5 +39,11 @@ public class Duck : MonoBehaviour
     {
         Debug.Log("ぶつかったよー");
         // ゲームオーバーの処理を書いていく
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("PointGet!!!");
+        score.AddScore(1);
     }
 }
