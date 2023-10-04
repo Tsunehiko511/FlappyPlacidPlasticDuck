@@ -43,7 +43,6 @@ public class Duck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("PointGet!!!");
         score.AddScore(1);
     }
 }
