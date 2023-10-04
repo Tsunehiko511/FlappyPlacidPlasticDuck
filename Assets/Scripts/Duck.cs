@@ -27,4 +27,16 @@ public class Duck : MonoBehaviour
 
         }
     }
+
+
+    // 当たり判定：Pipeにぶつかったらログを出す（ゲームオーバー）
+    // Colliderを設定する
+    // RigidBodyの設定をする
+    // コードからぶつかったら自動で実行される関数を利用する
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("ぶつかったよー");
+        // ゲームオーバーの処理を書いていく
+    }
 }
