@@ -26,7 +26,6 @@ public class Duck : MonoBehaviour
             // Debug.Log("Space‚Ì“ü—Í‚ª‚ ‚Á‚½‚æ[");
             //ã•ûŒü‚Ì‘¬“x‚ğİ’è‚µ‚Ä‚ ‚°‚é
             rb2D.velocity = Vector3.up * upSpeed;
-
         }
     }
 
