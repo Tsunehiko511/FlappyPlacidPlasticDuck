@@ -22,12 +22,16 @@ public class PipeGenerator : MonoBehaviour
             waitTimer = 0;
             Spawn();
         }
-        // Debug.Log(waitTimer);
     }
 
     // 生成
     void Spawn()
     {
-        Instantiate(pipePrefab, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+        // ランダムに生成位置を変えたい
+        // int r = Random.Range(0,100); // 0-99までの数字からランダムに１つ選ばれる
+
+        pos.y += Random.Range(-5f, 5f); // -5から5までのランダムな数字
+        Instantiate(pipePrefab, pos, Quaternion.identity);
     }
 }
