@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Duck : MonoBehaviour
 {
+    // やりたいこと
+    // バグ修正
+    // ・ゲームオーバー後も操作/得点ができてしまう
+    // ・画面外にでてもゲームオーバーにならない
+
+
+
     [SerializeField] Score score;
     [SerializeField] float upSpeed;
     [SerializeField] GameManager gameManager;
@@ -11,6 +18,7 @@ public class Duck : MonoBehaviour
     // ・RigidBody2Dを取得して上方向の速度を設定してあげる
 
     Rigidbody2D rb2D;
+    bool isDead;
 
     private void Awake()
     {
@@ -21,12 +29,28 @@ public class Duck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            // 関数の処理をここで終わる
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Debug.Log("Spaceの入力があったよー");
             //上方向の速度を設定してあげる
             rb2D.velocity = Vector3.up * upSpeed;
         }
+
+        if (transform.position.y < -14 || transform.position.y > 14)
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        gameManager.GameOver();
+        isDead = true;
     }
 
 
@@ -37,13 +61,23 @@ public class Duck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead)
+        {
+            // 関数の処理をここで終わる
+            return;
+        }
         // ゲームオーバーの処理を書いていく
         // UIを表示したい
-        gameManager.GameOver();
+        GameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDead)
+        {
+            // 関数の処理をここで終わる
+            return;
+        }
         score.AddScore(1);
     }
 
