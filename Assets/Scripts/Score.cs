@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip se;
     [SerializeField] Text scoreText;
     int score;
 
@@ -13,5 +15,7 @@ public class Score : MonoBehaviour
     {
         score += point;
         scoreText.text = score.ToString();
+        // ‰¹‚ð–Â‚ç‚·
+        audioSource.PlayOneShot(se);
     }
 }
